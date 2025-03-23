@@ -11,7 +11,7 @@ function Admin() {
 
     const login = async () => {
         try {
-            const res = await axios.post('http://174.129.173.184:5000/api/admin/login', {
+            const res = await axios.post('https://api.academia.mn/api/admin/login', {
                 username: 'admin',
                 password: 'admin123'
             });
@@ -21,10 +21,10 @@ function Admin() {
             setMessage('Login failed');
         }
     };
-
+    
     const createPromo = async () => {
         try {
-            const res = await axios.post('http://174.129.173.184:5000/api/promo/create', {
+            const res = await axios.post('https://api.academia.mn/api/promo/create', {
                 promo_code: promoCode,
                 user_id: parseInt(userId),
                 discount_percentage: parseInt(discount)
@@ -34,10 +34,10 @@ function Admin() {
             setMessage(error.response?.data.error || 'Failed to create promo');
         }
     };
-
+    
     const deletePromo = async () => {
         try {
-            const res = await axios.delete(`http://174.129.173.184:5000/api/promo/${promoCode}`, {
+            const res = await axios.delete(`https://api.academia.mn/api/promo/${promoCode}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage(res.data.message);
@@ -45,10 +45,10 @@ function Admin() {
             setMessage(error.response?.data.error || 'Failed to delete promo');
         }
     };
-
+    
     const getPayments = async () => {
         try {
-            const res = await axios.get('http://174.129.173.184:5000/api/payments', {
+            const res = await axios.get('https://api.academia.mn/api/payments', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setPayments(res.data);
